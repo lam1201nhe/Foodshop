@@ -47,10 +47,10 @@ public class FoodDAO extends DBContext {
     }
 
     public static void main(String[] args) {
-        FoodDAO c = new FoodDAO();
-        List<Food> list = c.getAll();
+        MenuDailyDAO menu = new MenuDailyDAO();
+        List<MenuDaily> list = menu.getAll();
 
-        System.out.println(list.get(0).getId() + "--" + list.get(0).getName_food());
+        System.out.println(list.get(0).getId() + "--" + list.get(0).getNameFood());
 
     }
 }
