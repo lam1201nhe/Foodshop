@@ -83,3 +83,19 @@ ul {
 .menu-item {
             margin-bottom: 20px;
         }
+
+        .discount {
+          position: relative;
+        }
+
+        .discount::after {
+          content: "Discount";
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: red;
+          color: white;
+          padding: 5px;
+          font-weight: bold;
+          z-index: 1;
+        }

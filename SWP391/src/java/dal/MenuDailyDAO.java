@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class FoodDAO extends DBContext {
 
     //lấy danh sách món theo Menu Daily
-    public ListMenu<MenuDaily > getAll() {
+    public getListMenu<MenuDaily > getAll() {
         Connection con = DBContext.getConnection();
         List<MenuDaily> list = new ArrayList<>();
         //String sql="select * from Categories";
