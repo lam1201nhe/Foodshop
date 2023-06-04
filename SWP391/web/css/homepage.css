@@ -375,6 +375,7 @@ input::placeholder {
   background: linear-gradient(
     to bottom,
     rgba(255, 166, 0, 0.537),
+    
     rgba(119, 239, 119, 0.907) 
   );
   height: 322px;
