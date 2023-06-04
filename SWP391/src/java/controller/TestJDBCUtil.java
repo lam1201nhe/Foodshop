@@ -22,7 +22,7 @@ public class TestJDBCUtil {
 //
 //    @RequestMapping("/menu")
 //    public String getMenu(Model model) {
-//        List<MenuDaily> menuItems = menuDaialyDAO.getListMenu();
+//        List<MenuDaily> menuItems = menuDaialyDAO.getAll();
 //        model.addAttribute("menuItems", menuItems);
 //        return "menu";
 //    }

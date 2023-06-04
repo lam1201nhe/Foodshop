@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dal;
+package database;
 
 import database.DBContext;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import model.Food;
+
+import model.MenuDaily;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class FoodDAO extends DBContext {
+public class MenuDailyDAO extends DBContext {
 
     //lấy danh sách món theo Menu Daily
-    public getListMenu<MenuDaily > getAll() {
+    public List<MenuDaily> getAll() {
         Connection con = DBContext.getConnection();
         List<MenuDaily> list = new ArrayList<>();
         //String sql="select * from Categories";
@@ -26,7 +26,7 @@ public class FoodDAO extends DBContext {
                 "JOIN Food f ON m.id_food = f.id " +
                 "WHERE m.id_food = ?";
         try {
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement st = con.prepareStatement(query);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
