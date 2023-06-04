@@ -7,47 +7,87 @@
     cursor: pointer;
 }
 
+h2 {
+    font-size: 72px;
+  background: -webkit-linear-gradient(green, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 #wrapper {
     /* Kích thước màn hình là 1280 x 720 */
     width: 100%;
     height: 100vh;
 }
 #header {
-    width: 100%;
-    padding:0px 30px;
-    margin-top:33px;
+    width: 90%;
+    margin: 25px auto 0px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;    
+    background: #ffffff;
 }
 
-#menu {
-    list-style:none;
-    display: flex;
-}
-
-#menu .item {
-    margin:0px 25px;
-}
-
-#menu .item a {
-    color:#B3C890;
-    text-decoration: none;
-}
-
-
-#actions {
-    display: flex;
+#header-left {
+    display: flex; 
     align-items: center;
 }
 
-#actions .item {
-    margin-left:22px;
+
+#menu {
+    margin-left: 20px;    
+    list-style:none;
+    display: flex;
+    gap: 20px;
 }
 
+.item-menu-content {
+    font-size:18px;
+}
 
+#menu .item a {
+    color:green;
+    text-decoration: none;
+}
 
+#menu .item a:hover{
+    color: orange;
+    transition: ease-in-out 0.5s;
+    border-bottom: 1.5px solid orange;
+}
 
+#header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 25%;
+}
+/* Searching  */
+.search-engine {
+    width: 300px !important;
+    border-color: green;
+    color: green;
+
+}
+
+/* Focus on Seach engine */
+.search-engine:focus {
+    color: white;
+    background-image: linear-gradient(to right, rgb(3, 161, 3), orange);
+}
+.search-engine::placeholder {
+    color: white;
+}
+
+/* Icons */
+.fa-solid {
+    color: green;
+}
+
+.fa-solid:hover {
+    color: orange;
+}
 
 #banner {
     width: 100%;
@@ -77,7 +117,7 @@
     width: 191px;
     height: 40px;
     margin-top:41px;
-    background:#1d1a1a;
+    background: green;
     border:none;
     outline:none;
     color:#fff;
@@ -136,10 +176,8 @@
 
 
 #wp-products {
-    padding-top:116px;
-    padding-bottom: 78px;
-    padding-left:134px;
-    padding-right:134px;
+     width: 75%;
+     margin: 120px auto;
 }
 
 #wp-products h2 {
@@ -161,10 +199,19 @@
 #list-products .item {
     width: 290px;
     height: 374px;
-    background:#362f2f;
+    background: #333;
+    /* background: linear-gradient(#eee, #333); */
     border-radius: 10px;
     margin-bottom: 50px;
+    box-shadow: 0 3px 10px black;
 }
+
+#list-products .item:hover {
+    background: linear-gradient(to bottom, rgb(3, 161, 3, 0.64), orange);
+
+
+    
+}   
 
 #list-products .item img {
     display: block;
@@ -330,7 +377,7 @@
 
 #footer {
     width: 100%;
-    background:rgb(0,0,0,0.79);
+    background: linear-gradient(to bottom, rgba(255, 166, 0, 0.896), rgb(3, 161, 3, 0.64));
     height: 322px;
     margin-top:200px;
     padding:0px 63px;
@@ -371,10 +418,14 @@
 }
 
 #footer .box form button {
-    background:#362f2f;
+    background: green;
     box-shadow: 5px 5px 4px rgba(0,0,0.25);
     width: 163px;
     height: 38px;
     margin-top:29px;
     color:#fff;
 }
+
+#footer .box form button:hover {
+    background: orange;
+} 
