@@ -13,7 +13,7 @@ body {
   height: 100vh;
   backdrop-filter: blur(2px);
   background-image: url("../images/background-login.jpeg");
-  background-size: auto;
+  background-size: 100% 100vh;
 }
 
 .container {
