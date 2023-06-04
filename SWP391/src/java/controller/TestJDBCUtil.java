@@ -15,6 +15,17 @@ public class TestJDBCUtil {
         
         
     }
+
+// DRAFT CODE MAPPING CONTROLLER
+//    @Autowired
+//    private MenuDaialyDAO menuDaialyDAO;
+//
+//    @RequestMapping("/menu")
+//    public String getMenu(Model model) {
+//        List<MenuDaily> menuItems = menuDaialyDAO.getAll();
+//        model.addAttribute("menuItems", menuItems);
+//        return "menu";
+//    }
     
     
     
