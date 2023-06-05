@@ -1,3 +1,12 @@
+<%-- 
+    Document   : home
+    Created on : Jun 4, 2023, 7:31:47 PM
+    Author     : Trịnh Minh Tân
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,6 +22,11 @@
     </head>
 
     <body>
+
+        <c:set var="input" value="${requestScope.input}"/>
+        <c:set var="error" value="${requestScope.error}"/>
+
+
         <div id="wrapper">
             <div id="header">
                 <div id="header-left">
@@ -21,7 +35,7 @@
                     </a>
                     <div id="menu">
                         <div class="item">
-                            <a class="item-menu-content" href="">Trang chủ</a>
+                            <a class="item-menu-content" href="home">Trang chủ</a>
                         </div>
                         <div class="item">
                             <a class="item-menu-content" href="">Sản phẩm</a>
@@ -36,17 +50,18 @@
                 </div>
                 <div id="header-actions">
                     <div class="item">
-                        <form style="position: relative">
+                        <form style="position: relative" action="search" method="post">      
                             <input
                                 class="search-engine"
                                 type="text"
                                 placeholder="Tìm kiếm..."
                                 style="height: 30px"
+                                name="find"
                                 />
-                            <i
+                            <i type="submit"
                                 class="fa-solid fa-magnifying-glass"
                                 style="position: absolute; right: 5px; top: 6px"
-                                ></i>
+                                ></i>        
                         </form>
                     </div>
                     <div class="item">
@@ -81,223 +96,50 @@
                     </a>
                 </div>
             </div>
+
             <div id="wp-products">
-                <h2>SẢN PHẨM CỦA CHÚNG TÔI</h2>
+                <h2>NHỮNG MÓN ĂN SIÊU SALE</h2>
                 <ul id="list-products">
-                    <div class="item">
-                        <img src="./images/product_1.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
+                    <c:forEach items="${requestScope.foodsale}" var="c">
+                        <div class="item">
+                            <img src="${c.img}" alt="" />  
+                            <a href="detail?num=${c.id}">
+                                <div class="name">${c.name_food}</div>
+                            </a>
+                            <div class="price">Giảm giá lên đến: ${c.discout*100} %</div>
                         </div>
+                    </c:forEach>
+            </div>
 
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-
-                    <div class="item">
-                        <img src="./images/product_1.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-
-                    <div class="item">
-                        <img src="./images/product_1.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-
-                    <div class="item">
-                        <img src="./images/product_2.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-
-                    <div class="item">
-                        <img src="./images/product_3.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-                    <div class="item">
-                        <img src="./images/product_4.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-
-                    <div class="item">
-                        <img src="./images/product_5.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-
-                    <div class="item">
-                        <img src="./images/product_6.png" alt="" />
-                        <div class="stars">
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                            <span>
-                                <img src="./images/star.png" alt="" />
-                            </span>
-                        </div>
-
-                        <div class="name">Món Ăn 1</div>
-                        <div class="desc">Mô Tả Ngắn Cho Sản Phẩm</div>
-                        <div class="price">500.000 VNĐ</div>
-                    </div>
-                </ul>
-                <div class="list-page">
-                    <div class="item">
-                        <a href="">1</a>
-                    </div>
-                    <div class="item">
-                        <a href="">2</a>
-                    </div>
-                    <div class="item">
-                        <a href="">3</a>
-                    </div>
-                    <div class="item">
-                        <a href="">4</a>
-                    </div>
+            <div class="list-page">
+                <div class="item">
+                    <a href="homeshow?saledisplay=${(num1+1)}&amp;cheapdisplay=${num2}">+</a>
                 </div>
             </div>
+
+            <div id="wp-products">
+                <h2>NHỮNG MÓN ĂN SIÊU RẺ</h2>
+                <br>
+                <ul id="list-products">
+                    <c:forEach items="${requestScope.foodcheap}" var="c">
+                        <div class="item">
+                            <img src="${c.img}" alt="" />  
+                            <a href="detail?num=${c.id}">
+                                <div class="name">${c.name_food}</div>
+                            </a>
+                            <div class="price">Giá chỉ còn: ${c.price_final} VNĐ</div>
+                        </div>
+                    </c:forEach>
+            </div>
+
+            <div class="list-page">
+                <div class="item">
+                    <a href="homeshow?saledisplay=${num1}&amp;cheapdisplay=${(num2+1)}">+</a>
+                </div>
+            </div>
+
+            <br>
+            </ul>
 
             <div id="saleoff">
                 <div class="box-left">
