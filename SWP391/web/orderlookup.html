@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/fooddetail.css" />
+    <title>Tra cứu đơn hàng</title>
     <link rel="stylesheet" href="./css/homepage.css" />
+    <link rel="stylesheet" href="./css/orderlookup.css">
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
@@ -21,10 +21,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
+
   <body>
-    <div class="wrapper">
-      <!-- Navbar -->
+    <div id="wrapper">
       <div id="header-cover">
         <div id="header">
           <div id="header-left">
@@ -76,36 +80,22 @@
           </div>
         </div>
       </div>
-      <!-- Main Content -->
-      <div class="product-detail">
-        <!-- Picture -->
-        <div class="col-sm-5">
-          <img
-            class="img-product"
-            src="./images/background-login.jpeg"
-            alt="mon an"
-          />
-        </div>
-        <div class="col-sm-1"></div>
-        <!-- Information -->
-        <form action="" class="product-information col-sm-6">
-          <!-- Header -->
-          <h1>Gà chiên xù</h1>
-          <!-- Description -->
-          <p class="description">Một con gà và hai chai nước ngọt</p>
-          <!-- Price -->
-          <h3 class="price">59.000đ</h3>
-          <!-- Unit -->
-          <div class="form-outline">
-            <input type="number" id="quantity" class="form-control" value="1" step="1"/>
+
+      <div class="content-cover">
+        <h1>Tra cứu đơn hàng</h1>
+
+        <div class="input-group">
+            <div class="form-outline">
+              <input id="search-input" type="search" id="form1" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button id="search-button" type="button" class="btn btn-primary">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
-          <!-- Button Add -->
-          <br />
-          <button class="btn">Thêm vào giỏ hàng</button>
-        </form>
       </div>
-      <!-- Footer -->
-      <div id="footer">
+
+      <div id="footer" style="margin-top: 350px;">
         <div class="box">
           <div class="logo">
             <img
@@ -147,5 +137,6 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"
     ></script>
+    <script src="./js/orderlookup.js"></script>
   </body>
 </html>
