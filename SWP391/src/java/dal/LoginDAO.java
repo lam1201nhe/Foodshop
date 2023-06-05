@@ -50,7 +50,7 @@ public class LoginDAO extends DBContext {
     }
 
     /**
-     * Lấy giá trị lớn nhất của id
+     *Lấy giá trị lớn nhất của id
      */
     public int getCountAcc() {
         Connection con = DBContext.getConnection();
