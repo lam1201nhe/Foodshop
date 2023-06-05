@@ -117,7 +117,7 @@
 
 
             <c:if test="${type==1}">
-                <div id="wp-products">
+                <div id="wp-products" style="margin: 120px auto 0px auto !important;">
                     <h2>NHỮNG MÓN ĂN SIÊU SALE</h2>
                     <ul id="list-products">
                         <c:forEach items="${requestScope.foodsale}" var="c">
@@ -137,7 +137,7 @@
                     </div>
                 </div>
 
-                <div id="wp-products">
+                <div id="wp-products" style="margin: 120px auto 0px auto !important;">
                     <h2>NHỮNG MÓN ĂN SIÊU RẺ</h2>
                     <br>
                     <ul id="list-products">
