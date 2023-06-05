@@ -7,6 +7,15 @@
   cursor: pointer;
 }
 
+h1 {
+  font-size: 124px;
+  font-weight: 700;
+  text-align: center;
+  background: -webkit-linear-gradient(green, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 h2 {
   font-size: 72px;
   background: -webkit-linear-gradient(green, orange);
@@ -180,6 +189,8 @@ input::placeholder {
   left: 50%;
   transform: translateX(-50%);
 }
+
+
 
 #wp-products {
   width: 75%;
