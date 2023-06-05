@@ -46,13 +46,18 @@ body {
 }
 
 .nav-link {
-    color: #e4a11b !important;
+    color: green !important;
 }
 
 a {
-    color: #e4a11b !important;
+    color: green !important;
 }
 
 .form-check-input:checked {
-    background-color: #e4a11b !important;
+    background-color: green !important;
+}
+
+.btn-sign-in{
+  background-color: green !important;
+  color: white !important;
 }

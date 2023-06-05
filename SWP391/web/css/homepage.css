@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,200;1,400;1,500&display=swap");
 * {
   padding: 0;
@@ -5,6 +6,15 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
+}
+
+h1 {
+  font-size: 124px;
+  font-weight: 700;
+  text-align: center;
+  background: -webkit-linear-gradient(green, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -25,7 +35,6 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
 }
 
 #header-left {
@@ -54,6 +63,7 @@ h2 {
 #menu .item a {
   color: green;
   text-decoration: none;
+  font-weight: bold;
 }
 
 #menu .item a:hover {
@@ -78,12 +88,12 @@ h2 {
 }
 
 /* Focus on Seach engine */
-.search-engine:focus {
+/* .search-engine:focus {
   color: white;
   background-image: linear-gradient(to right, rgb(3, 161, 3), orange);
-}
+} */
 input::placeholder {
-  color: white;
+  color: green;
 }
 
 /* Icons */
@@ -368,8 +378,8 @@ input::placeholder {
   width: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(255, 166, 0, 0.896),
-    rgb(3, 161, 3, 0.64)
+    rgba(255, 166, 0, 0.537),
+    rgba(119, 239, 119, 0.907) 
   );
   height: 322px;
   margin-top: 200px;

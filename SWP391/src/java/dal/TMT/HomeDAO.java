@@ -223,6 +223,12 @@ public class HomeDAO extends DBContext {
         return displayfood;
     }
 
+    public String getMenu(Model model) {
+        List<MenuDaily> menuItems = menuDaialyDAO.getAll();
+        model.addAttribute("menuItems", menuItems);
+        return "menu";
+    }
+
     public static void main(String[] args) {
         HomeDAO c = new HomeDAO();
 
