@@ -6,7 +6,7 @@ package controller.Home;
  */
 
 import com.oracle.wls.shaded.org.apache.bcel.generic.AALOAD;
-import dal.TMT.HomeDAO;
+import dal.TMT.MenuDailyDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -67,12 +67,12 @@ public class MenuDisplay extends HttpServlet {
 
         List<MenuDaily> foodmenu = menu.getFoodMenu();
 
-        List<MenuDaily> foodcheap = menu.getFoodCheap(foodmenu);
 
-        List<MenuDaily> foodsale = menu.getFoodSale(foodmenu);
-
-        request.setAttribute("foodcheap", obj.setDisplay(foodcheap, 9, 1));
-        request.setAttribute("foodsale", obj.setDisplay(foodsale, 9, 2));
+        if(selectedFilter && (selectedFilter == "1" || selectedFilter == "2" || selectedFilter == "3")){
+            request.setAttribute("foodmenu", menu.setDisplay(foodmenu, 9, 2));
+        } else {
+            request.setAttribute("foodmenu", menu.setDisplay(foodmenu, 9, 1));
+        }
 
         request.getRequestDispatcher("menu.jsp").forward(request, response);
 

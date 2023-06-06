@@ -16,17 +16,16 @@ import java.sql.SQLException;
 
 public class MenuDailyDAO extends DBContext {
 
-    // Danh sách các danh mục (categories) muốn truy vấn
-    List<Integer> categoryIds = Arrays.asList(1, 2, 3);
-
-    // Tạo chuỗi điều kiện cho danh mục (category) trong câu truy vấn
-    String categoryCondition = "";
-        for (int categoryId : categoryIds) {
-        if (!categoryCondition.isEmpty()) {
-            categoryCondition += " OR ";
-        }
-        categoryCondition += "food.id_category = " + categoryId;
-    }
+//    Danh sách các danh mục (categories) muốn truy vấn
+//    List<Integer> categoryIds = Arrays.asList(1, 2, 3);
+//    Tạo chuỗi điều kiện cho danh mục (category) trong câu truy vấn
+//    String categoryCondition = "";
+//        for (int categoryId : categoryIds) {
+//        if (!categoryCondition.isEmpty()) {
+//            categoryCondition += " OR ";
+//        }
+//        categoryCondition += "food.id_category = " + categoryId;
+//    }
 
     //lấy danh sách món theo Menu Daily
     public List<MenuDaily> getFoodMenu() {
