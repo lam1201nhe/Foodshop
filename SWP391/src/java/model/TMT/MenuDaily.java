@@ -18,12 +18,11 @@ public class MenuDaily {
     private float discout;
     private int quantity;
     private int price_final;
-    private int id_category;
 
     public MenuDaily() {
     }
 
-    public MenuDaily(int id, String name_food, String describe_food, int price_sell, String img, float discout, int quantity, int price_final, int id_category) {
+    public MenuDaily(int id, String name_food, String describe_food, int price_sell, String img, float discout, int quantity, int price_final) {
         this.id = id;
         this.name_food = name_food;
         this.describe_food = describe_food;
@@ -32,7 +31,6 @@ public class MenuDaily {
         this.discout = discout;
         this.quantity = quantity;
         this.price_final = price_final;
-        this.id_category = id_category;
     }
 
     public MenuDaily(int id, String name_food, String img, float discout) {
@@ -120,8 +118,5 @@ public class MenuDaily {
         this.price_final = price_final;
     }
 
-    public void setPrice_final(int id_category) {
-        this.id_category = id_category;
-    }
 
 }
