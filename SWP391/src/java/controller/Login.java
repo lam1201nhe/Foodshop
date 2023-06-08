@@ -95,6 +95,7 @@ public class Login extends HttpServlet {
         } else { // Nếu tài khoản tồn tại thì bắn về trang home
             session.setAttribute("account", a);
             response.sendRedirect("home");
+
         }
 
     }

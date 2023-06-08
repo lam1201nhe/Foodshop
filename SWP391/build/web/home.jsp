@@ -97,9 +97,12 @@
             <c:set var="num1" value="${requestScope.num1}"/>
             <c:set var="num2" value="${requestScope.num2}"/>
             <c:set var="type" value="${requestScope.type}"/>
-
-
-
+            <c:set var="account" value=""/>
+            
+            <h2>cho nay</h2>
+            <h2>${requestScope.account.username}</h2>
+            <h2>cho nay</h2>
+            
             <c:if test="${type==2}">
                 <div id="wp-products">
                     <h2>${requestScope.error}</h2>
@@ -126,7 +129,7 @@
                                 <a href="detail?num=${c.id}">
                                     <div class="name">${c.name_food}</div>
                                 </a>
-                                <div class="price">Giảm giá lên đến: ${c.discout*100} %</div>
+                                <div class="price">Giảm giá lên đến: ${c.price_final} %</div>
                             </div>
                         </c:forEach>
                 </div>
