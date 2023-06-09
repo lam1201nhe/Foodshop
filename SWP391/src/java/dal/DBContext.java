@@ -17,6 +17,7 @@ public class DBContext {
             String password = "123456789?TM";
             
 
+            String password = "vanthinh";
                      
             c = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
