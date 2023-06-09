@@ -15,6 +15,8 @@ public class DBContext {
             String url = "jdbc:mySQL://localhost:3306/swp391tmtnew";
             String username = "root";
             String password = "123456789?TM";
+            
+
                      
             c = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
