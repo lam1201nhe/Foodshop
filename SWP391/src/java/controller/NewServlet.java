@@ -1,11 +1,9 @@
-package controller;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-import com.oracle.wls.shaded.org.apache.bcel.generic.AALOAD;
-import dal.HomeDAO;
+package controller;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,17 +11,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.MenuDaily2;
+import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 /**
- * Lớp gọi hàm và đưa dữ liệu lên trang
  *
- * @Phiên Bản : 1.0 04/06/2023
- * @Tác giả: Trịnh Minh Tân
+ * @author msi
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
-public class HomeDisplay extends HttpServlet {
+@WebServlet(name = "NewServlet", urlPatterns = {"/new"})
+public class NewServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +38,10 @@ public class HomeDisplay extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeDisplay</title>");
+            out.println("<title>Servlet NewServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeDisplay at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,29 +59,22 @@ public class HomeDisplay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+////        processRequest(request, response);
+//        HttpSession session = request.getSession();
+//        
+////        Account user = (Account) session.getAttribute("account");
+//        
+//        
+//        
+//        
+////        request.setAttribute("account", user.getUsername);
+//
+//
+//        String a = (String) session.getAttribute("account");
+//        
+//        request.setAttribute("mmm", a);
 
-        HomeDAO obj = new HomeDAO();
-
-        // Lấy danh sách dữ liệu
-        List<MenuDaily2> foodmenu = obj.getFoodMenu();
-
-        List<MenuDaily2> foodcheap = obj.getFoodCheap(foodmenu);
-
-        List<MenuDaily2> foodsale = obj.getFoodSale(foodmenu);
-
-        // Bắn dữ liệu lên trang
-        request.setAttribute("foodsale", obj.setDisplay(foodsale, 1, 1));
-
-        request.setAttribute("foodcheap", obj.setDisplay(foodcheap, 1, 2));
-
-        request.setAttribute("num1", 1);
-
-        request.setAttribute("num2", 1);
-        
-        request.setAttribute("type", 1); // Kiểu trang home
-
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-
+        request.getRequestDispatcher("newjsp.jsp").forward(request, response);
     }
 
     /**

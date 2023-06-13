@@ -101,7 +101,7 @@
 
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" id="loginName" class="form-control" name="user"/>
+                                    <input type="text" id="loginName" class="form-control" name="user"/>
                                     <label class="form-label" for="loginName">Username</label
                                     >
                                     <!-- display when Wrong format -->

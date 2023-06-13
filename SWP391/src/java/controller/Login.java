@@ -62,7 +62,6 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         request.getRequestDispatcher("login.jsp").forward(request, response);
 
         //processRequest(request, response);
@@ -88,13 +87,21 @@ public class Login extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        
         if (a == null) { // Nếu không có tài khoản trả về null
             request.setAttribute("error", "Not invalid");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else { // Nếu tài khoản tồn tại thì bắn về trang home
-            session.setAttribute("account", a);
-            response.sendRedirect("home");
+
+            if (a.getRole_name().equalsIgnoreCase("admin")) {
+                response.sendRedirect("new");
+            } else if (a.getRole_name().equalsIgnoreCase("delivery")) {
+                response.sendRedirect("new");
+            } else if (a.getRole_name().equalsIgnoreCase("manager")) {
+                response.sendRedirect("new");
+            } else if (a.getRole_name().equalsIgnoreCase("customer")) {
+                session.setAttribute("account", a);
+                response.sendRedirect("home");
+            }
         }
 
     }
