@@ -106,23 +106,6 @@ input::placeholder {
   color: white;
 }
 
-.list-page .itemactive {
-    margin:0px 15px;
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #EDF041;
-}
-
-.list-page .itemactive a {
-    color: black;
-    text-decoration: none;
-    width: 25%;
-}
-
 /* Icons */
 .fa-solid {
   color: green;
