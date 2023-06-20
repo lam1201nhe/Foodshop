@@ -1,11 +1,10 @@
+package controller;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
-
-import dal.HomeDAO;
-import dal.LoginDAO;
+import dal.MenuDailyDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,17 +12,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Account;
+import java.util.List;
+import model.MenuDaily;
+import model.MenuDaily2;
 
 /**
- * Lớp gọi hàm và đưa dữ liệu lên trang
  *
- * @Phiên Bản : 1.0 04/06/2023
- * @Tác giả: Nguyễn Văn Thịnh
+ * @author msi
  */
-@WebServlet(name = "Register", urlPatterns = {"/register"})
-public class Register extends HttpServlet {
+@WebServlet(name = "MenuServlet", urlPatterns = {"/menu"})
+public class MenuDisplay extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,15 +35,15 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");
+            out.println("<title>Servlet HomeDisplay</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet HomeDisplay at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,7 +61,46 @@ public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        MenuDailyDAO menu = new MenuDailyDAO();
+
+        String selectedCategory = request.getParameter("category");
+        String selectedPrice = request.getParameter("order");
+
+        int itemsPerPage = 6; // Số lượng bản ghi hiển thị trên mỗi trang
+        int currentPage = 1; // Trang hiện tại, mặc định là 1
+
+// Kiểm tra và lấy giá trị trang hiện tại từ tham số truyền vào (nếu có)
+        String currentPageParam = request.getParameter("page");
+        if (currentPageParam != null) {
+            currentPage = Integer.parseInt(currentPageParam);
+        }
+
+        List<MenuDaily2> foodmenu;
+
+        if (selectedCategory != null && (selectedCategory.equals("1") || selectedCategory.equals("2") || selectedCategory.equals("3"))) {
+            foodmenu = menu.getFoodCategogy(selectedCategory);
+        } else if (selectedPrice != null && (selectedPrice.equals("1") || selectedPrice.equals("2") || selectedPrice.equals("3") || selectedPrice.equals("4") || selectedPrice.equals("5") || selectedPrice.equals("6"))) {
+            foodmenu = menu.getFoodPrice(selectedPrice);
+        } else {
+            foodmenu = menu.getFoodMenu();
+        }
+
+// Tính toán chỉ số bắt đầu và chỉ số kết thúc của bản ghi trên trang hiện tại
+        int startIndex = (currentPage - 1) * itemsPerPage;
+        int endIndex = Math.min(startIndex + itemsPerPage, foodmenu.size());
+
+// Trích xuất danh sách bản ghi trên trang hiện tại
+        List<MenuDaily2> currentFoodMenu = foodmenu.subList(startIndex, endIndex);
+
+        int totalItems = foodmenu.size(); // Tổng số bản ghi
+        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage); // Tính toán số lượng trang
+
+
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("foodmenu", currentFoodMenu);
+        request.getRequestDispatcher("menu.jsp").forward(request, response);
     }
 
     /**
@@ -77,50 +114,8 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String u = request.getParameter("user");
-        String p = request.getParameter("pass");
-        String r = request.getParameter("repeat");
-
-        String u2 = "", p2 = "";
-
-        LoginDAO obj = new LoginDAO();
-        HomeDAO obj2 = new HomeDAO();
-
-        try {
-            u2 = obj2.delSpace2(u); // Xóa mọi khoảng trống trong chuỗi
-            p2 = obj2.delSpace2(p);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        // Kiểm tra chuỗi kí tự ko dấu và không cách
-        if (u2.equalsIgnoreCase(u) && p2.equalsIgnoreCase(p) && obj.checkInput(u) && obj.checkInput(p)) { 
-            // Kiểm tra chuỗi kí tự có trong phạm vi chỉ định
-            if ((obj.checkInputRegiter(u) == false) || (obj.checkInputRegiter(p) == false)) {
-                request.setAttribute("error", "Mật khẩu và tài khoản trên 6 kí tự");
-            } else {
-                // Kiểm tra tài khaonr đã tồn tại chưa
-                if (obj.getCheckUser(u) == true) {
-                    request.setAttribute("error", "Tên tài khoản đã tồn tại");
-                } else {
-                    //Thêm tài khoản mới
-                    if (p.equalsIgnoreCase(r)) {
-                        Account c = new Account((obj.getCountAcc() + 1), u, p, "customer");
-                        obj.getCreateAcc(c);
-                        request.setAttribute("error", "Tạo tài khoản thành công");
-                    } else {
-                        request.setAttribute("error", "Mật khẩu không khớp");
-                    }
-                }
-            }
-        } else {
-            request.setAttribute("error", "Hãy nhập kí tự liền không dấu");
-        }
-
-        request.getRequestDispatcher("login.jsp").forward(request, response);
-
-    }         
+        processRequest(request, response);
+    }
 
     /**
      * Returns a short description of the servlet.
