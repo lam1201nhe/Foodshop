@@ -4,8 +4,7 @@
  */
 package controller;
 
-import dal.HomeDAO;
-import dal.LoginDAO;
+import dal.DetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,17 +12,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Account;
+import java.util.List;
+import model.FoodDetail;
+import model.MenuDaily2;
 
 /**
- * Lớp gọi hàm và đưa dữ liệu lên trang
  *
- * @Phiên Bản : 1.0 04/06/2023
- * @Tác giả: Nguyễn Văn Thịnh
+ * @author msi
  */
-@WebServlet(name = "Register", urlPatterns = {"/register"})
-public class Register extends HttpServlet {
+@WebServlet(name = "ShowDetail", urlPatterns = {"/detail"})
+public class ShowDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +40,10 @@ public class Register extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");
+            out.println("<title>Servlet ShowDetail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ShowDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,7 +61,35 @@ public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String n = request.getParameter("num");
+
+        int num = 0;
+        int rate;
+        
+        try {
+            num = Integer.parseInt(n);
+
+        } catch (Exception e) {
+            System.out.println("Bi Loi");
+        }
+        
+        DetailDAO obj = new DetailDAO();
+
+        List<FoodDetail> list = obj.getDetailFood(num);
+
+        List<MenuDaily2> list1 = obj.DetailId(num);
+        
+        rate = obj.getAvg(num);
+        
+        request.setAttribute("commentfood", list);
+
+        request.setAttribute("infofood", list1);
+        
+        request.setAttribute("rate", rate);
+
+        request.getRequestDispatcher("fooddetail.jsp").forward(request, response);
+
     }
 
     /**
@@ -77,50 +103,8 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String u = request.getParameter("user");
-        String p = request.getParameter("pass");
-        String r = request.getParameter("repeat");
-
-        String u2 = "", p2 = "";
-
-        LoginDAO obj = new LoginDAO();
-        HomeDAO obj2 = new HomeDAO();
-
-        try {
-            u2 = obj2.delSpace2(u); // Xóa mọi khoảng trống trong chuỗi
-            p2 = obj2.delSpace2(p);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
-        // Kiểm tra chuỗi kí tự ko dấu và không cách
-        if (u2.equalsIgnoreCase(u) && p2.equalsIgnoreCase(p) && obj.checkInput(u) && obj.checkInput(p)) { 
-            // Kiểm tra chuỗi kí tự có trong phạm vi chỉ định
-            if ((obj.checkInputRegiter(u) == false) || (obj.checkInputRegiter(p) == false)) {
-                request.setAttribute("error", "Mật khẩu và tài khoản trên 6 kí tự");
-            } else {
-                // Kiểm tra tài khaonr đã tồn tại chưa
-                if (obj.getCheckUser(u) == true) {
-                    request.setAttribute("error", "Tên tài khoản đã tồn tại");
-                } else {
-                    //Thêm tài khoản mới
-                    if (p.equalsIgnoreCase(r)) {
-                        Account c = new Account((obj.getCountAcc() + 1), u, p, "customer");
-                        obj.getCreateAcc(c);
-                        request.setAttribute("error", "Tạo tài khoản thành công");
-                    } else {
-                        request.setAttribute("error", "Mật khẩu không khớp");
-                    }
-                }
-            }
-        } else {
-            request.setAttribute("error", "Hãy nhập kí tự liền không dấu");
-        }
-
-        request.getRequestDispatcher("login.jsp").forward(request, response);
-
-    }         
+        processRequest(request, response);
+    }
 
     /**
      * Returns a short description of the servlet.

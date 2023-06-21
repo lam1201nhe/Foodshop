@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.MenuDaily;
+import model.MenuDaily2;
 
 
 /**
@@ -82,8 +82,8 @@ public class SearchFood extends HttpServlet {
 
         HomeDAO obj = new HomeDAO(); 
 
-        List<MenuDaily> foodmenu = obj.getFoodMenu(); // lấy dữu liệu từ menu
-        List<MenuDaily> list;
+        List<MenuDaily2> foodmenu = obj.getFoodMenu(); // lấy dữu liệu từ menu
+        List<MenuDaily2> list;
         
         find = obj.delSpace(find);
 
